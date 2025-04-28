@@ -1,7 +1,9 @@
 name: Enforce UAT Pull Requests
 
 on:
-  workflow_call:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   check-branch:
