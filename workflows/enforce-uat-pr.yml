@@ -1,0 +1,17 @@
+name: Enforce UAT Pull Requests
+
+on:
+  workflow_call:
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check that PR is from 'uat' branch
+        run: |
+          echo "Checking PR source branch: ${{ github.head_ref }}"
+          if [ "${{ github.head_ref }}" != "uat" ]; then
+            echo "❌ Only pull requests from 'uat' branch are allowed into 'main'."
+            exit 1
+          fi
+          echo "✅ PR is from 'uat' branch. Proceeding."
